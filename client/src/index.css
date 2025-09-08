@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(0, 0%, 16%);
+  --muted: hsl(0, 0%, 96%);
+  --muted-foreground: hsl(0, 0%, 45%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(0, 0%, 16%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(0, 0%, 16%);
+  --border: hsl(0, 0%, 90%);
+  --input: hsl(0, 0%, 90%);
+  --primary: hsl(0, 0%, 16%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(30, 100%, 52%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --accent: hsl(0, 0%, 96%);
+  --accent-foreground: hsl(0, 0%, 16%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(0, 0%, 16%);
+  --radius: 0.5rem;
+  --whatsapp: hsl(122, 70%, 49%);
+  --neutral: hsl(0, 0%, 98%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(0, 0%, 16%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(30, 100%, 52%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+  --whatsapp: hsl(122, 70%, 49%);
+  --neutral: hsl(240, 10%, 3.9%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Custom colors for the EducaVales Tec theme */
+.bg-educavales-primary {
+  background-color: #282828;
+}
+
+.bg-educavales-secondary {
+  background-color: #ff8b00;
+}
+
+.bg-educavales-whatsapp {
+  background-color: #25D366;
+}
+
+.text-educavales-primary {
+  color: #282828;
+}
+
+.text-educavales-secondary {
+  color: #ff8b00;
+}
+
+.text-educavales-whatsapp {
+  color: #25D366;
+}
+
+.hover\:bg-educavales-secondary:hover {
+  background-color: #e57700;
+}
+
+.hover\:bg-educavales-whatsapp:hover {
+  background-color: #22c55e;
+}
+
+.border-educavales-secondary {
+  border-color: #ff8b00;
+}
+
+.focus\:ring-educavales-secondary:focus {
+  --tw-ring-color: #ff8b00;
+}
+
+.focus\:border-educavales-secondary:focus {
+  border-color: #ff8b00;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom animations */
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.8s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Text line clamp utility */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
