@@ -86,11 +86,17 @@ export async function setupVite(app: Express, server: Server) {
 }
 
 export function serveStatic(app: Express) {
-  const distPath = path.resolve(__dirname, "public");
+  // CORREÇÃO: Usar o mesmo caminho do vite.config.ts (dist/public)
+  const distPath = path.resolve(__dirname, "dist", "public");
 
   if (!fs.existsSync(distPath)) {
+    // Mensagem de erro mais útil com instruções
     throw new Error(
-      `Could not find the build directory: ${distPath}, make sure to build the client first`,
+      `Could not find the build directory: ${distPath}\n` +
+      `Make sure to build the client first with:\n` +
+      `npm run build` +
+      `\nCurrent working directory: ${process.cwd()}\n` +
+      `Directory contents: ${fs.readdirSync(__dirname).join(', ')}`
     );
   }
 
