@@ -6,12 +6,12 @@ import { type Server } from "http";
 import viteConfig from "../vite.config";
 import { nanoid } from "nanoid";
 
-// Solução compatível que funciona em ambos os contextos (ESM e CommonJS)
+// Solução robusta e compatível
 const getRootDir = () => {
   try {
     // Tenta usar import.meta.url se estiver disponível (ESM)
     if (typeof import.meta?.url !== 'undefined') {
-      const { fileURLToPath } = await import("url");
+      const { fileURLToPath } = require("url");
       const __filename = fileURLToPath(import.meta.url);
       return path.dirname(__filename);
     }
@@ -23,7 +23,7 @@ const getRootDir = () => {
 };
 
 const rootDir = getRootDir();
-const __dirname = rootDir; // Mantém compatibilidade com código existente
+const __dirname = rootDir;
 
 const viteLogger = createLogger();
 
@@ -65,7 +65,7 @@ export async function setupVite(app: Express, server: Server) {
 
     try {
       const clientTemplate = path.resolve(
-        rootDir, // Usa rootDir que funciona em ambos os casos
+        rootDir,
         "client",
         "index.html",
       );
@@ -86,7 +86,6 @@ export async function setupVite(app: Express, server: Server) {
 }
 
 export function serveStatic(app: Express) {
-  // Mantém o caminho original que seu código espera
   const distPath = path.resolve(__dirname, "public");
 
   if (!fs.existsSync(distPath)) {
