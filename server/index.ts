@@ -76,7 +76,7 @@ app.use((req, res, next) => {
   // SEMPRE serve a aplicação na porta 5000
   // Esta porta serve tanto a API quanto o cliente
   // É a única porta que não está protegida por firewall
-  const port = 5000;
+  const port = 3007;
   server.listen({
     port, // Porta definida
     host: "0.0.0.0", // Escuta em todas as interfaces
