@@ -51,15 +51,19 @@ export function Navigation() {
       setIsScrolled(window.scrollY > 10);
       
       // Atualiza a seção ativa com base no scroll
-      const sections = navItems.map(item => document.querySelector(item.href));
-      const scrollPosition = window.scrollY + 80;
-      
-      for (let i = sections.length - 1; i >= 0; i--) {
-        if (sections[i] && scrollPosition >= sections[i].offsetTop) {
-          setActiveSection(navItems[i].href);
-          break;
-        }
-      }
+    const sections = navItems.map(item => 
+  document.querySelector<HTMLElement>(item.href)
+);
+
+const scrollPosition = window.scrollY + 80;
+
+for (let i = sections.length - 1; i >= 0; i--) {
+  const section = sections[i];
+  if (section && scrollPosition >= section.offsetTop) {
+    setActiveSection(navItems[i].href);
+    break;
+  }
+}
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -400,3 +404,5 @@ export function Navigation() {
     </nav>
   );
 }
+
+//texto
