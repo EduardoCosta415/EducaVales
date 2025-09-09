@@ -95,3 +95,5 @@ export function serveStatic(app: Express) {
     res.sendFile(path.resolve(clientPath, "index.html"));
   });
 }
+
+//texto

@@ -5,7 +5,7 @@ export function Footer() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("privacy");
 
-  const openModal = (content) => {
+  const openModal = (content: "privacy" | "terms") => {
     setModalContent(content);
     setModalOpen(true);
   };
