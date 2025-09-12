@@ -3,7 +3,8 @@ import { pgTable, text, serial, integer } from "drizzle-orm/pg-core";
 // Importa função para criar schemas de validação baseados nas tabelas
 import { createInsertSchema } from "drizzle-zod";
 // Importa biblioteca Zod para validação de tipos
-import { z } from "zod";
+
+// ----------------- Cursos -----------------
 
 // Define a tabela de cursos no banco de dados
 export const courses = pgTable("courses", {
@@ -15,30 +16,30 @@ export const courses = pgTable("courses", {
   image: text("image").notNull(), // URL da imagem do curso, campo obrigatório
 });
 
-// Cria schema de validação para inserção de cursos, excluindo o ID (auto-gerado)
+// Schema de validação para inserção de cursos (sem ID, que é auto-gerado)
 export const insertCourseSchema = createInsertSchema(courses).omit({
   id: true,
 });
 
-// Tipo TypeScript para dados de inserção de curso
-export type InsertCourse = z.infer<typeof insertCourseSchema>;
-// Tipo TypeScript para curso completo (incluindo ID)
+// Tipos TypeScript (direto do Drizzle → mais seguro)
+export type InsertCourse = typeof courses.$inferInsert;
 export type Course = typeof courses.$inferSelect;
 
-// Mantém schema existente de usuários para futuras funcionalidades
+// ----------------- Usuários -----------------
+
+// Define a tabela de usuários
 export const users = pgTable("users", {
   id: serial("id").primaryKey(), // ID único do usuário
   username: text("username").notNull().unique(), // Nome de usuário único e obrigatório
   password: text("password").notNull(), // Senha do usuário, campo obrigatório
 });
 
-// Cria schema de validação para inserção de usuários, incluindo apenas campos necessários
+// Schema de validação para inserção de usuários
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
   password: true,
 });
 
-// Tipo TypeScript para dados de inserção de usuário
-export type InsertUser = z.infer<typeof insertUserSchema>;
-// Tipo TypeScript para usuário completo (incluindo ID)
+// Tipos TypeScript (direto do Drizzle)
+export type InsertUser = typeof users.$inferInsert;
 export type User = typeof users.$inferSelect;
