@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { FaWhatsapp, FaTimes } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 
 export function FloatingWhatsApp() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -7,19 +8,22 @@ export function FloatingWhatsApp() {
   const [course, setCourse] = useState("");
 
   const interestArea = "Cursos Técnicos";
-  
+
   const courses = [
     "Tecnico em Marketing",
     "Segurança do Trabalho",
     "Logistica",
     "Transações Imobiliarias",
-    "Enfermagem"
+    "Enfermagem",
   ];
 
   const handleSubmit = () => {
     if (name && course) {
       const message = `Olá, meu nome é ${name}. Tenho interesse em ${interestArea}, especificamente no curso de ${course}.`;
-      window.open(`https://wa.me/5531972608298?text=${encodeURIComponent(message)}`, '_blank');
+      window.open(
+        `https://wa.me/5531972608298?text=${encodeURIComponent(message)}`,
+        "_blank"
+      );
       setIsModalOpen(false);
       setName("");
       setCourse("");
@@ -40,18 +44,23 @@ export function FloatingWhatsApp() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg p-6 max-w-md w-full">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-bold text-gray-800">Enviar mensagem</h3>
-              <button 
+              <h3 className="text-lg font-bold text-gray-800">
+                Enviar mensagem
+              </h3>
+              <button
                 onClick={() => setIsModalOpen(false)}
                 className="text-gray-500 hover:text-gray-700"
               >
                 <FaTimes />
               </button>
             </div>
-            
+
             <div className="space-y-4">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Seu nome
                 </label>
                 <input
@@ -63,9 +72,12 @@ export function FloatingWhatsApp() {
                   placeholder="Digite seu nome"
                 />
               </div>
-              
+
               <div>
-                <label htmlFor="interest" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="interest"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Área de interesse
                 </label>
                 <input
@@ -76,9 +88,12 @@ export function FloatingWhatsApp() {
                   className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 cursor-not-allowed"
                 />
               </div>
-              
+
               <div>
-                <label htmlFor="course" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="course"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Curso desejado
                 </label>
                 <select
@@ -89,15 +104,21 @@ export function FloatingWhatsApp() {
                 >
                   <option value="">Selecione um curso</option>
                   {courses.map((courseOption, index) => (
-                    <option key={index} value={courseOption}>{courseOption}</option>
+                    <option key={index} value={courseOption}>
+                      {courseOption}
+                    </option>
                   ))}
                 </select>
               </div>
-              
+
               <button
                 onClick={handleSubmit}
                 disabled={!name || !course}
-                className={`w-full py-2 px-4 rounded-md text-white font-medium ${!name || !course ? 'bg-gray-400 cursor-not-allowed' : 'bg-educavales-whatsapp hover:bg-educavales-whatsapp/90'}`}
+                className={`w-full py-2 px-4 rounded-md text-white font-medium ${
+                  !name || !course
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-educavales-whatsapp hover:bg-educavales-whatsapp/90"
+                }`}
               >
                 Enviar para WhatsApp
               </button>
